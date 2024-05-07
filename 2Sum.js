@@ -1,4 +1,4 @@
-// find pair of given sum
+// find pair of given sum   
 
 
 function findPair(arr, sum)
