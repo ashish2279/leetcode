@@ -47,12 +47,22 @@ class BinaryTree {
             this.inorderTraversal(node.right);
         }
     }
+
+    findheight(node) {
+        if(!node)
+            return 0;
+        else 
+            return 1 + Math.max(this.findheight(node.left),this.findheight(node.right))
+
+    }
 }
 
 // Example usage:
 const tree = new BinaryTree();
-const keys = [1, 2, 3, 4, 5, 6, 7];
+const keys = [1, 2, 3, 4, 5, 6, 7,8,9,10,11,12,13,14,15,16];
 keys.forEach(key => tree.insert(key));
 
 console.log("Inorder Traversal:");
 tree.inorderTraversal(tree.root);
+
+console.log("Height of tree is : %j",tree.findheight(tree.root))

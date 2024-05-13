@@ -50,6 +50,14 @@ class Tree {
                 }
 
         }
+
+        findheight(node) {
+            if(!node)
+                return 0;
+            else 
+                return 1 + Math.max(this.findheight(node.left),this.findheight(node.right))
+
+        }
 }
 
 
@@ -61,3 +69,5 @@ tree.insert(3);
 tree.insert(4);
 tree.insert(5);
 tree.printInorder()
+let height = tree.findheight(tree.root)
+console.log("height is ",height)
