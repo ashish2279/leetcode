@@ -134,7 +134,68 @@ class Tree{
             return root
         }
     }
-    
+
+    inorderIterative() {
+        let root = this.root;
+        if(!root)
+            return;
+        let stack = [];
+        let result = ""
+        let curr = root;
+        while (curr || stack.length) {
+            while (curr)
+                {
+                    stack.push(curr)
+                    curr = curr.left;
+                }
+            curr = stack.pop();
+             result += curr.val +  " <-> "
+            curr = curr.right;
+        }
+        console.log(result); 
+    }
+
+    findpath(root, path, n1) {
+        if(!root)
+            return false;
+        path.push(root);
+        if (root.val == n1) {
+            return true;
+        }
+        if (root.left && this.findpath(root.left , path, n1))
+            return true;
+        if(root.right && this.findpath(root.right, path, n1))
+            return true;
+
+        path.pop()  // it means no path exist
+        return false;
+    }
+
+    findLCA( n1, n2) {
+        let path1 = []
+        let path2 = []
+        return this.findLCAutil(this.root, n1, n2, path1 , path2)
+    }
+
+    findLCAutil(root, n1,n2,path1,path2) {
+        if(!this.findpath(root, path1,n1) || !this.findpath(root, path2, n2))
+            {
+                console.log("path ",path1)
+                console.log("oath2 ",path2)
+                console.log("Node doesn't exist")
+                return -1;
+            }
+        
+        
+        let i;
+        for (i = 0; i < path1.length && i < path2.length; i++) {
+              
+            if (path1[i] != path2[i])
+                break;
+        }
+  
+        return path1[i-1].val;
+    }   
 }
 
 
@@ -143,10 +204,12 @@ const keys = [1, 2, 3, 14, 5, 6, 7,8,9,16,11,15,11];
 keys.forEach(key => tree.insert(key));
 
 console.log("Inorder Traversal:");
-tree.inorderTraversal(tree.root);
-tree.deleteNode(tree.root,110)
-console.log("Inorder Traversal:");
-tree.inorderTraversal(tree.root);
+//tree.inorderTraversal(tree.root);
+tree.inorderIterative();
+// tree.deleteNode(tree.root,110)
+// console.log("Inorder Traversal:");
+// tree.inorderTraversal(tree.root);
+console.log(tree.findLCA(9,5))
 
 /*
                                         1
