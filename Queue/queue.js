@@ -1,13 +1,35 @@
 class Queue {
-    constructor(val1 , val2) {
-        this.size = val1;
-        this.length = val2
+    constructor() {
+        this.items = [];
     }
- 
-    printValues() {
-        console.log(` creating a queue with length ${this.length} and size ${this.size}`)
+
+    push(element) {
+        this.items.push(element);
+    }
+
+    pop() {
+        if (this.items.length === 0) {
+            return null;
+        }
+        return this.items.shift();
+    }
+
+    peek() {
+        return this.items[this.items.length - 1];
+    }
+
+    isEmpty() {
+        return this.items.length === 0;
+    }
+
+    size() {
+        return this.items.length;
     }
 }
 
-let q = new Queue(12,3)
-q.printValues()
+let q = new Queue();
+q.push(4)
+
+console.log(q.peek())
+console.log(q.pop())
+console.log(q.peek())

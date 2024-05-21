@@ -17,6 +17,7 @@ class BinaryTree {
         if (this.root==null)
             {
                 this.root = node;
+                node.level  = 1;
                 return;
             }
         let queue = [this.root];
@@ -26,11 +27,13 @@ class BinaryTree {
                 if(temp.left === null)
                     {
                         temp.left = node;
+                        node.level  = temp.level + 1;
                         break;
                     }
                 else if(temp.right === null)
                     {
                         temp.right = node ;
+                        node.level  = temp.level + 1;
                         break;
                     }
                 else {
@@ -43,7 +46,7 @@ class BinaryTree {
     inorderTraversal(node) {
         if (node) {
             this.inorderTraversal(node.left);
-            console.log(node.val);
+            console.log(node.val + "  (" + node.level + ") " );
             this.inorderTraversal(node.right);
         }
     }
