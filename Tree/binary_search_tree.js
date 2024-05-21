@@ -13,7 +13,14 @@ class Tree{
     {
         this.root = null;
     }
-
+    printStack(stack){
+        let output="";
+        for ( let i = 0 ; i < stack.length ; i ++){
+            let node = stack[i];
+            output = output+node.val+",";
+        }
+        console.log(output);
+    }  
     insert(data) {
         let newNode = new Node(data);
         if(!this.root)
@@ -34,7 +41,7 @@ class Tree{
             {
                 if(!node.left)
                     {
-                        node.left = newNode;
+                        node.left = newNode;    
                         return;
 
                     }
@@ -136,9 +143,10 @@ class Tree{
     }
 
     inorderIterative() {
+     // left -> root -> right
         let root = this.root;
         if(!root)
-            return;
+            return; 
         let stack = [];
         let result = ""
         let curr = root;
@@ -146,13 +154,36 @@ class Tree{
             while (curr)
                 {
                     stack.push(curr)
-                    curr = curr.left;
+                    curr = curr.left; // for traversing left most element 
                 }
-            curr = stack.pop();
+            curr = stack.pop(); // now take the element and print it
              result += curr.val +  " <-> "
-            curr = curr.right;
+            curr = curr.right; // move to the right subtree 
         }
         console.log(result); 
+    }
+
+    preOrderIterative() {
+        let root = this.root;
+        if (root == null)
+            return;
+        let stack = []
+        stack.push(root)
+        let res = ""
+        while(stack.length) {
+        //    console.log("stack is")
+        //     this.printStack(stack)
+          let curr = stack.pop()
+          res +=  curr.val + "->";
+          if(curr.right) {
+            stack.push(curr.right)
+          }
+        if(curr.left) {
+            stack.push(curr.left)
+        }
+          }
+        
+        console.log("Pre order is ",res)
     }
 
     findpath(root, path, n1) {
@@ -196,6 +227,52 @@ class Tree{
   
         return path1[i-1].val;
     }   
+
+    preorderTraversal(node) {
+        if (node) {
+            console.log(node.val + "  (" + node.level + ") " );
+            this.preorderTraversal(node.left);
+            this.preorderTraversal(node.right);
+        }
+    }
+
+    postorderTraversal(node) {
+        if (node) {
+            this.postorderTraversal(node.left);
+            this.postorderTraversal(node.right);
+            console.log(node.val + "");
+        }
+    }
+
+    postOrderIterative(node) {
+        let stack = []
+        let stack2 = []
+        let root = this.root;
+        if (root == null)
+            return;
+        stack.push(root)
+        let res = ""
+        while(stack.length) {
+        //   this.printStack(stack)
+          let curr = stack.pop()
+          stack2.push(curr)
+          
+          if(curr.left) {
+            stack.push(curr.left)
+         }
+          if(curr.right) {
+            stack.push(curr.right)
+          }
+        
+          }
+        
+          while(stack2.length) {
+           res +=  stack2.pop().val + "->";
+          }
+        console.log("Post order is ",res)
+
+
+    }
 }
 
 
@@ -203,13 +280,21 @@ const tree = new Tree();
 const keys = [1, 2, 3, 14, 5, 6, 7,8,9,16,11,15,11];
 keys.forEach(key => tree.insert(key));
 
-console.log("Inorder Traversal:");
-//tree.inorderTraversal(tree.root);
-tree.inorderIterative();
-// tree.deleteNode(tree.root,110)
 // console.log("Inorder Traversal:");
-// tree.inorderTraversal(tree.root);
-console.log(tree.findLCA(9,5))
+// //tree.inorderTraversal(tree.root);
+// tree.inorderIterative();
+// // tree.deleteNode(tree.root,110)
+// // console.log("Inorder Traversal:");
+// // tree.inorderTraversal(tree.root);
+// console.log(tree.findLCA(9,5))
+// console.log("Preorder Traversal:");
+// tree.preorderTraversal(tree.root)
+// tree.preOrderIterative()
+
+console.log("Post order trversal")
+tree.postorderTraversal(tree.root)
+console.log("Post order Iterative trversal")
+tree.postOrderIterative(tree.root)
 
 /*
                                         1
