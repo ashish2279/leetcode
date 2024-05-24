@@ -58,6 +58,52 @@ class Tree {
                 return 1 + Math.max(this.findheight(node.left),this.findheight(node.right))
 
         }
+        findelementAtKdist(k) {
+            let res = [];
+            console.log("relement at level :%j", k)
+            this.findKlevel(this.root, k, res)
+        }
+
+        findKlevel(node, k, res) {
+            if(!node || k<0)
+                return
+            if(k==0) {
+                console.log(node.val)
+                return
+            }
+
+            this.findKlevel(node.left,k-1,res)
+            this.findKlevel(node.right, k-1,res)
+        }
+
+        findpath(root, path, n1) {
+            if(!root)
+                return false;
+            path.push(root.val);
+            if (root.val == n1) {
+                return true;
+            }
+            if (root.left && this.findpath(root.left , path, n1))
+                return true;
+            if(root.right && this.findpath(root.right, path, n1))
+                return true;
+    
+            path.pop()  // it means no path exist
+            return false;
+        }
+
+        findAncestors(k) {
+
+            let path = []
+            if(this.findpath(this.root,path, k))
+                console.log(path)
+            else{
+                console.log(path)
+                console.log(" element doesn't exist")
+            }
+        }
+
+
 }
 
 
@@ -70,4 +116,7 @@ tree.insert(4);
 tree.insert(5);
 tree.printInorder()
 let height = tree.findheight(tree.root)
+
 console.log("height is ",height)
+tree.findelementAtKdist(0)
+tree.findAncestors(15)

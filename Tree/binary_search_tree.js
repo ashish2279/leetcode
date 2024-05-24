@@ -189,7 +189,7 @@ class Tree{
     findpath(root, path, n1) {
         if(!root)
             return false;
-        path.push(root);
+        path.push(root.val);
         if (root.val == n1) {
             return true;
         }
@@ -212,11 +212,11 @@ class Tree{
         if(!this.findpath(root, path1,n1) || !this.findpath(root, path2, n2))
             {
                 console.log("path ",path1)
-                console.log("oath2 ",path2)
+                console.log("path2 ",path2)
                 console.log("Node doesn't exist")
                 return -1;
             }
-        
+        console.log(" path1 : %j \n path2 :%j",path1,path2)
         
         let i;
         for (i = 0; i < path1.length && i < path2.length; i++) {
@@ -228,7 +228,7 @@ class Tree{
         return path1[i-1].val;
     }   
 
-    preorderTraversal(node) {
+    preorderTraversl(node) {
         if (node) {
             console.log(node.val + "  (" + node.level + ") " );
             this.preorderTraversal(node.left);
@@ -242,6 +242,25 @@ class Tree{
             this.postorderTraversal(node.right);
             console.log(node.val + "");
         }
+    }
+
+    findKthElement(k) {
+        let c = {count :0};
+        this.findKthElementUtil(this.root, c, k)
+        
+    }
+    findKthElementUtil(node, c, k) {
+        if(!node || c.count>=k)
+            return
+        this.findKthElementUtil(node.right, c,k)
+        c.count++;
+        if (c.count===k) {
+            console.log(`${k}th largest element is ${node.val}`)
+            return;
+        }
+        this.findKthElementUtil(node.left, c, k)
+
+
     }
 
     postOrderIterative(node) {
@@ -286,15 +305,15 @@ keys.forEach(key => tree.insert(key));
 // // tree.deleteNode(tree.root,110)
 // // console.log("Inorder Traversal:");
 // // tree.inorderTraversal(tree.root);
-// console.log(tree.findLCA(9,5))
+console.log(tree.findLCA(9,115))
 // console.log("Preorder Traversal:");
 // tree.preorderTraversal(tree.root)
 // tree.preOrderIterative()
 
-console.log("Post order trversal")
-tree.postorderTraversal(tree.root)
-console.log("Post order Iterative trversal")
-tree.postOrderIterative(tree.root)
+// console.log("Post order trversal")
+// tree.postorderTraversal(tree.root)
+// console.log("Post order Iterative trversal")
+// tree.postOrderIterative(tree.root)
 
 /*
                                         1
@@ -315,3 +334,4 @@ tree.postOrderIterative(tree.root)
 
 
 
+tree.findKthElement(2)
