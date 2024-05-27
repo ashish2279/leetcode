@@ -1,3 +1,4 @@
+const LinkedList = require('./../LinkedList/linkedList')
 class Stack {
     constructor(size = 10) {
         this.items = new Array(size);

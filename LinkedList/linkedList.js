@@ -7,6 +7,7 @@ class Node{
 class LinkedList {
     constructor() {
         this.head = null;
+        this.tail = null
     }
 
     peek() 
@@ -78,8 +79,46 @@ class LinkedList {
          
          
     }
+
+    deletelast() {
+        if(!this.head) {
+            console.log("Empty List")
+            return ;
+        }
+
+        let curr = this.head;
+        let  prev;
+        while (curr && curr.next) {
+            prev = curr
+            curr = curr.next
+        }
+
+        if(!curr)
+            {
+                console.log("Empty list")
+                return;
+            }
+        else {
+            console.log(curr.val + " deleted")
+            if(curr == this.head)
+                {
+                    this.head = curr.next
+                }
+            else
+            {
+
+                prev.next = curr.next
+0            }
+            return;
+        }
+                  
+    }
+
+    print
 }
 
+
+module.exports = LinkedList
 
 let L = new LinkedList()
 L.insert(2)
