@@ -26,10 +26,12 @@ class Queue {
         return this.items.length;
     }
 }
+module.exports = Queue
+if (require.main === module) {
+    let q = new Queue();
+    q.push(4)
 
-let q = new Queue();
-q.push(4)
-
-console.log(q.peek())
-console.log(q.pop())
-console.log(q.peek())
+    console.log(q.peek())
+    console.log(q.pop())
+    console.log(q.peek())
+}

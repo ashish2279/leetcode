@@ -1,9 +1,9 @@
-const LinkedList = require('./../LinkedList/linkedList')
+
 class Stack {
     constructor(size = 10) {
         this.items = new Array(size);
         this.count= 0;
-    
+         
     }
 
     push(element) {
@@ -58,7 +58,7 @@ function factorialRecursionStack(n) {
 
     return result;
 }
-
+module.exports = Stack;
 // Example usage:
 console.log("Factorial of 5 using recursion stack:", factorialRecursionStack(5)); // Output: 120
 

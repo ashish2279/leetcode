@@ -28,22 +28,10 @@ class Stack {
 }
 
 // Example of using a stack to simulate recursion for factorial calculation
-function factorialRecursionStack(n) {
-    const stack = new Stack();
-    stack.push(n);
 
-    let result = 1;
-
-    while (!stack.isEmpty()) {
-        const current = stack.pop();
-        if (current > 1) {
-            stack.push(current - 1);
-        }
-        result *= current;
-    }
-
-    return result;
-}
-
+module.exports = Stack
 // Example usage:
+
+if (require.main === module) {
 console.log("Factorial of 5 using recursion stack:", factorialRecursionStack(5)); // Output: 120
+}
