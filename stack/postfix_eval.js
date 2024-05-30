@@ -19,7 +19,7 @@ function evaluate(exp) {
                         break;
                 case '*': val = first * sec ;
                         break;
-                case '/': val = first / sec ;
+                case '/': val = first / sec ; // this might vary from question to question if they want integer devision or not
                         break;
             }
             st.push(val)
