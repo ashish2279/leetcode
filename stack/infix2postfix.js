@@ -23,6 +23,7 @@ function top (st) {
     return st[st.length -1]
 }
 function infixToPrefix(str) {
+    str = str.replace(/\s/g,'')
     let st = []
     let res = ''
     for (let char of str) {
@@ -49,8 +50,10 @@ function infixToPrefix(str) {
         } else
            res += char
     }
-
-    return res
+    while(st.length) {
+        res+= st.pop()
+    }
+ return res;
 }
 
 console.log(infixToPrefix('a+b*(c^d-e)^(f+g*h)-i'))
