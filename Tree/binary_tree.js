@@ -103,6 +103,15 @@ class Tree {
             }
         }
 
+        areIdentical(a, b) {
+            if (a== null && b== null)
+                return 1;
+            if(a== null)
+                return 0;
+            if (b=null)
+                return 
+        }
+
         
 
 }
@@ -120,4 +129,4 @@ let height = tree.findheight(tree.root)
 
 console.log("height is ",height)
 tree.findelementAtKdist(0)
-tree.findAncestors(15)
+tree.findAncestors(5)
