@@ -178,9 +178,9 @@ class Tree{
           if(curr.right) {
             stack.push(curr.right)
           }
-        if(curr.left) {
+          if(curr.left) {
             stack.push(curr.left)
-        }
+          }
           }
         
         console.log("Pre order is ",res)
@@ -292,11 +292,37 @@ class Tree{
 
 
     }
+    findPathToleaf() {
+        let root = this.root;
+        if (root == null)
+            return;
+        let stack = []
+        stack.push({curr:root, path: []})
+        while(stack.length) {
+
+          let { curr, path }= stack.pop();
+
+          let newPath = [...path,curr.val]
+
+          if(!curr.right && !curr.left) {
+            console.log("path for leaf : %j for %j",  curr.val,newPath)
+          } else {
+          if(curr.right) {
+            stack.push({curr:curr.right, path: newPath})
+          }
+          if(curr.left) {
+            stack.push({curr:curr.left, path:newPath})
+          }
+          }
+        }
+        
+       }
 }
 
 
 const tree = new Tree();
-const keys = [1, 2, 3, 14, 5, 6, 7,8,9,16,11,15,11];
+// const keys = [1, 2, 3, 14, 5, 6, 7,8,9,16,11,15,11];
+const keys = [10,5,12,4,7,11,14,13,20,15,6,19,50,40,30];
 keys.forEach(key => tree.insert(key));
 
 // console.log("Inorder Traversal:");
@@ -305,7 +331,7 @@ keys.forEach(key => tree.insert(key));
 // // tree.deleteNode(tree.root,110)
 // // console.log("Inorder Traversal:");
 // // tree.inorderTraversal(tree.root);
-console.log(tree.findLCA(9,115))
+//console.log(tree.findLCA(9,115))
 // console.log("Preorder Traversal:");
 // tree.preorderTraversal(tree.root)
 // tree.preOrderIterative()
@@ -334,4 +360,6 @@ console.log(tree.findLCA(9,115))
 
 
 
-tree.findKthElement(2)
+//tree.findKthElement(2)
+
+tree.findPathToleaf()
