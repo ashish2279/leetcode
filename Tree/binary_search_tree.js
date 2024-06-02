@@ -157,7 +157,7 @@ class Tree{
                     curr = curr.left; // for traversing left most element 
                 }
             curr = stack.pop(); // now take the element and print it
-             result += curr.val +  " <-> "
+             result += curr.val +  "->"
             curr = curr.right; // move to the right subtree 
         }
         console.log(result); 
@@ -266,7 +266,7 @@ class Tree{
     postOrderIterative(node) {
         let stack = []
         let stack2 = []
-        let root = this.root;
+        let root = node || this.root;
         if (root == null)
             return;
         stack.push(root)
@@ -316,7 +316,7 @@ class Tree{
           }
         }
         
-       }
+    }
 }
 
 
@@ -361,5 +361,3 @@ keys.forEach(key => tree.insert(key));
 
 
 //tree.findKthElement(2)
-
-tree.findPathToleaf()
