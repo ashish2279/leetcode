@@ -4,8 +4,8 @@ function findPivot(arr, low, high) {
 
     let mid = Math.floor((low + high) / 2);
 
-    if (mid > low && arr[mid - 1] > arr[mid]) return mid;
-    if (mid < high && arr[mid] > arr[mid + 1]) return mid+1;
+    if (arr[mid - 1] > arr[mid]) return mid;
+    if (arr[mid] > arr[mid + 1]) return mid+1;
 
     if (arr[low] >= arr[mid]) return findPivot(arr, low, mid - 1);
     
@@ -29,26 +29,31 @@ function BinarySearch(arr,low,high,target)
     
     return BinarySearch(arr,mid+1,high,target)
 }
+ 
 
+function rotatedSearch(arr,target) {
+    let pivot = findPivot(arr,0,arr.length-1)
+    
+    
+    console.log("pivot : %j",pivot)
+    if (pivot === -1)
+        return BinarySearch(arr,0,arr.length-1,target)
+        
+    if(target > arr[arr.length-1])
+        return  BinarySearch(arr,0,pivot-1,target)
+    else
+       return BinarySearch(arr,pivot,arr.length-1,target)
+
+}
 
 function main()
 {
-    let arr = [5,6,7,1,2,3,4]
+    let arr = [5,6,0,1,2,3]
     
     let target = 3
     
-    let pivot = findPivot(arr,0,arr.length-1)
-    
-    let ans;
-    console.log("pivot : %j",pivot)
-    if (pivot === -1)
-        ans = BinarySearch(arr,0,arr.length-1,target)
-        
-    if(target > arr[arr.length-1])
-        ans = BinarySearch(arr,0,pivot-1,target)
-    else
-        ans = BinarySearch(arr,pivot,arr.length-1,target)
-    console.log(ans)
+    for (let char of arr)
+        console.log(rotatedSearch(arr,char+1))
 }
 
 
