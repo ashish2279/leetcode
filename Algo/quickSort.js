@@ -15,7 +15,7 @@ function partition (arr, low, high) {
 }
 
 function sort(arr, low, high) {
-    if(low < high) {
+    if(low <= high) {
         let pi = partition(arr,low,high);
         
         sort(arr, low, pi-1)

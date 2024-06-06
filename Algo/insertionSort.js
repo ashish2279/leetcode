@@ -1,3 +1,8 @@
+// shift bigger elements to the right gets to the right position
+// 112 ,11,163,5,6
+// in first iteration since 112 is more than 11 it needs to shift to right 
+//  _ , 112,163,5,6  now in palce of _ key will be placed 
+
 function insertionSort(arr) {
     for (let i = 1; i < arr.length; i++) {
         let key = arr[i];
