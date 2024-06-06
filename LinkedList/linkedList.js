@@ -4,6 +4,7 @@ class Node{
         this.next = null
     }
 }
+
 class LinkedList {
     constructor() {
         this.head = null;
@@ -30,10 +31,11 @@ class LinkedList {
             prev = curr
             curr = curr.next
         }
-         prev.next = new Node(val);
+        let n = new Node(val)
+         prev.next = n;
          console.log(val + " inserted")
          
-         return;
+         return n;
             
     }
     print () {
@@ -114,7 +116,24 @@ class LinkedList {
                   
     }
 
-    print
+    detectCycle() {
+        let head = this.head;
+        if(!head)
+            return {val : 'Not present'};
+
+        let slow = head;
+        let fast = head;
+
+        while (slow && fast && fast.next) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if(fast == slow)
+                return slow;
+        }
+
+        return {val : 'Not present'};
+
+    }
 }
 
 
@@ -122,17 +141,21 @@ module.exports = LinkedList
 
 let L = new LinkedList()
 L.insert(2)
-L.insert(3)
+L.insert(4)
 L.print()
-L.delete(3)
+L.insert(5)
 L.print()
 L.insert(1)
 L.print()
-L.insert(3)
+let n = L.insert(3)
 L.print()
-L.delete(4)
-L.delete(2)
-L.peek()
-L.delete(1)
-L.peek()
-L.delete(3)
+n.next = L.head;
+console.log("cycle present at",L.detectCycle().val)
+n.next = null
+console.log("cycle present at",L.detectCycle().val)
+// L.delete(4)
+// L.delete(2)
+// L.peek()
+// L.delete(1)
+// L.peek()
+// L.delete(3)
