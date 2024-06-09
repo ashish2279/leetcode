@@ -1,7 +1,7 @@
 function perm (str, vis, aux,ans) {
     if(aux.length === str.length)
         {
-            ans.push(aux.slice())
+            ans.push(aux.join(''))
             return;
         }
     for(let i=0;i<str.length;i++){
@@ -33,5 +33,10 @@ for(let i = ind;i<arr.length;i++)
 let str = '1234'
 let ans = [];
 let vis = Array(str.length).fill(false);
+perm(str.split(''),vis,[],ans)
+console.log(ans)
+
+
+ans = []
 perm2(str.split(''),0,ans)
 console.log(ans)

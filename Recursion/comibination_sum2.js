@@ -1,4 +1,4 @@
-// find all the uniquw combination that equals to target sum
+// find all the unique combination that equals to target sum
 function combination_sum(arr, i, aux, target) {
 
     if(target === 0) {
