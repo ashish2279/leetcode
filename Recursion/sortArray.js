@@ -15,9 +15,8 @@ function sort(arr) {
         return;
     }
     let a  = arr.pop();
-    sort(arr);
+    sort(arr);  
     insert_at_merged(arr,a);
-
 
 }
 
