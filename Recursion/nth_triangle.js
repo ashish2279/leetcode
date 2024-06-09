@@ -20,8 +20,13 @@ for(let i=1;i<=n;i++){
     return sum
 }
 
-let n =5;
+function nthTriangle3(n) {
+    return (n * (n+1))/2
+   }
+let n =6;
 
 console.log(nthTriangle(n))
 
 console.log(nthTriangle2(n))
+
+console.log(nthTriangle3(n))
