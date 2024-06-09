@@ -23,7 +23,8 @@ for(let i=1;i<=n;i++){
 function nthTriangle3(n) {
     return (n * (n+1))/2
    }
-let n =6;
+
+   let n =6;
 
 console.log(nthTriangle(n))
 
