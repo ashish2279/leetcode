@@ -30,6 +30,27 @@ for(let i = ind;i<arr.length;i++)
 
 }
 
+
+function perm3(arr, aux) {
+   // console.log("\naux : %j \t arr :%j ",aux.join(''),arr.join(''))
+    if(arr.length === 0) {
+        console.log(aux.join(''));
+        return;
+    }
+
+    let ch = arr[0]; 
+    //console.log("inserting ",ch)
+    for (let i=0;i<=aux.length;i++){
+        let first = aux.slice(0,i).join('');
+        
+        let second = aux.slice(i).join('');
+      // console.log("first : %j \t second :%j",first,second)
+        let newStr = first + ch + second;
+        perm3(arr.slice(1), newStr.split(''))
+    }
+
+}
+
 let str = '1234'
 let ans = [];
 let vis = Array(str.length).fill(false);
@@ -40,3 +61,5 @@ console.log(ans)
 ans = []
 perm2(str.split(''),0,ans)
 console.log(ans)
+
+perm3(['a','b','c'],[])

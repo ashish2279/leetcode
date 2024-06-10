@@ -18,29 +18,28 @@
 // }
 
 
-function combination_sum(arr, i, aux, target,ans) {
+function combination_sum(arr, aux, target,ans) {
     if(target === 0) {
         ans.push(aux.slice())
-        console.log(aux)
         return;
     }
 
-    if(i >= arr.length || target<0){
+    if(arr.length === 0 || target<0){
         return;
     }
     
-    if(arr[i] <= target) {
-        aux.push(arr[i]);
-        combination_sum(arr, i, aux, target - arr[i],ans);
+    if(arr[0] <= target) {
+        aux.push(arr[0]);
+        combination_sum(arr, aux, target - arr[0],ans);
         aux.pop();
     }
     
-    combination_sum(arr, i+1, aux,target,ans)
+    combination_sum(arr.slice(1), aux,target,ans)
 
 }
 let arr = [1,2,3,4,5,6,7];
 arr.sort()
 let ans =[]
-combination_sum(arr,0,[],7,ans)
+combination_sum(arr,[],7,ans)
 
 console.log("printing ans ",ans)
