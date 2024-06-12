@@ -1,3 +1,6 @@
+// n dices having k faces how many ways to get a target values
+// 2 dices having 6 faces there are 6 ways to get 7 {1,6} {2,5} {3,4} {4,3} {5,2} {6,1}
+
 function dice(arr, N,target,ans) {
     // console.log("arr  :%j \t N : %j \t target : %j",arr, N , target)
     if(arr.length === N) {

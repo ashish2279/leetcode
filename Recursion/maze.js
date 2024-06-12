@@ -34,30 +34,23 @@ function allPath(path, r,c, m,n,vis) {
     if(!maze[r][c] || vis[r][c]) {
         return;
     }
-    
+    vis[r][c] = 1;
     if(r<m-1) {
-        vis[r][c] = 1;
+        
         allPath(path + 'D', r+1, c,m,n,vis)
-        vis[r][c] = 0;
     }
     
     if(c<n-1) {
-        vis[r][c] = 1;
         allPath(path + 'R' ,r ,c+1,m,n,vis)
-        vis[r][c] = 0;
     }
     
     if(r>0) {
-        vis[r][c] = 1;
         allPath(path + 'U', r-1,c,m,n,vis)
-        vis[r][c] = 0;
     }
     if(c>0) {
-        vis[r][c] = 1;
         allPath(path + 'L', r,c-1,m,n,vis)
-        vis[r][c] = 0;
     }
-    
+    vis[r][c] = 0;
     }
 
 let m=3,n=3
