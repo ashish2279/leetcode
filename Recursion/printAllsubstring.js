@@ -53,10 +53,31 @@ function sum(str, i, aux,k) {
     sum(str,i+1,aux,k)
 
 }
-let str = 'ASH'
+let str = 'ASHS'
 
 print(str,0,[]);
 console.log(count(str,0,[],2))
 
 let arr = [1,2,3,4,5];
 sum(arr, 0, [], 5, {sum:0})
+
+/*
+
+i/p = ASHS
+{A,S,H,S}
+{A,S,H}
+{A,S,S}
+{A,S}
+{A,H,S}
+{A,H}
+{A,S}
+{A}
+{S,H,S}
+{S,H}
+{S,S}
+{S}
+{H,S}
+{H}
+{S}
+{}
+*/
