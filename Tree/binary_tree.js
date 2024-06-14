@@ -109,7 +109,10 @@ class Tree {
             if(a== null)
                 return 0;
             if (b=null)
-                return 
+                return 0;
+
+            
+
         }
 
         invertTree(root) {
