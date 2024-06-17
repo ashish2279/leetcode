@@ -317,6 +317,34 @@ class Tree{
         }
         
     }
+    findheightIterative() {
+        let q = [];
+        q.push(this.root);
+        let height = 0;
+        q.push(height);
+        while(q.length) {
+            let node  = q.shift();
+            if(!node.val) {
+                console.log("printed  level : %j",height)
+                height = node + 1;
+                q.push(height)
+                node = q.shift();
+                console.log(node.val)
+            } else {
+                console.log(node.val)
+            }
+
+        
+
+            if(node.left)
+                q.push(node.left)
+            if(node.right)
+                q.push(node.right)
+
+        }
+
+        console.log("height is  :%j",height);
+    }
 
 }
 
@@ -361,4 +389,5 @@ keys.forEach(key => tree.insert(key));
 
 
 //tree.findKthElement(2)
-tree.findPathToleaf()
+tree.findPathToleaf();
+tree.findheightIterative()

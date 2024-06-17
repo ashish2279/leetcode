@@ -58,6 +58,37 @@ class Tree {
                 return 1 + Math.max(this.findheight(node.left),this.findheight(node.right))
 
         }
+
+        findheightIterative(node) {
+            let q = [];
+            q.push(this.root);
+            let height = 0;
+            q.push(height);
+            while(q.length) {
+                let node  = q.shift();
+                if(!node.val) {
+                    console.log("printed  level : %j",height)
+                    height = node + 1;
+                    q.push(height)
+                    node = q.shift();
+                    console.log(node.val)
+                } else {
+                    console.log(node.val)
+                }
+
+            
+
+                if(node.left)
+                    q.push(node.left)
+                if(node.right)
+                    q.push(node.right)
+    
+            }
+
+            console.log("height is  :%j",height);
+        }
+
+
         findelementAtKdist(k) {
             let res = [];
             console.log("element at level :%j", k)
@@ -179,6 +210,8 @@ tree.reverselevelOrder()
 let height = tree.findheight(tree.root)
 
 console.log("height is ",height)
+
+tree.findheightIterative()
 tree.findelementAtKdist(0)
 tree.findelementAtKdist(1)
 tree.findelementAtKdist(2)
