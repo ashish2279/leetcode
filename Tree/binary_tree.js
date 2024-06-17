@@ -60,7 +60,7 @@ class Tree {
         }
         findelementAtKdist(k) {
             let res = [];
-            console.log("relement at level :%j", k)
+            console.log("element at level :%j", k)
             this.findKlevel(this.root, k, res)
         }
 
@@ -106,12 +106,12 @@ class Tree {
         areIdentical(a, b) {
             if (a== null && b== null)
                 return 1;
-            if(a== null)
+            if (a== null)
                 return 0;
             if (b=null)
                 return 0;
 
-            
+            return this.areIdentical(a.left,b.left) && this.areIdentical(a.right,b.right);
 
         }
 
@@ -125,6 +125,43 @@ class Tree {
             return root;
         }
         
+        levelOrder() {
+            console.log("reverse level order is ")
+            let q = [];
+            q.push(this.root);
+            let res = ""
+            while(q.length) {
+                let node  = q.shift();
+                res += " " + node.val;
+                if(node.left)
+                    q.push(node.left)
+                if(node.right)
+                    q.push(node.right)
+    
+            }
+
+            console.log(res);
+        }
+
+        reverselevelOrder() {
+            console.log("reverse level order is ")
+            let q = [];
+            q.push(this.root);
+            let res = ""
+            while(q.length) {
+                let node  = q.shift();
+                res = " " + node.val + res;
+                if(node.right)
+                    q.push(node.right)
+                if(node.left)
+                    q.push(node.left)
+                
+    
+            }
+
+            console.log(res);
+        }
+
 
 }
 
@@ -137,8 +174,13 @@ tree.insert(3);
 tree.insert(4);
 tree.insert(5);
 tree.printInorder()
+tree.levelOrder()
+tree.reverselevelOrder()
 let height = tree.findheight(tree.root)
 
 console.log("height is ",height)
 tree.findelementAtKdist(0)
+tree.findelementAtKdist(1)
+tree.findelementAtKdist(2)
+tree.findelementAtKdist(3)
 tree.findAncestors(5)

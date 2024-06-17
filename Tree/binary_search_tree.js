@@ -317,14 +317,14 @@ class Tree{
         }
         
     }
+
 }
 
 
 const tree = new Tree();
-// const keys = [1, 2, 3, 14, 5, 6, 7,8,9,16,11,15,11];
-const keys = [10,5,12,4,7,11,14,13,20,15,6,19,50,40,30];
+ const keys = [1, 2, 3, 14, 5, 6, 7,8,9,16,11,15,11];
+//const keys = [10,5,12,4,7,11,14,13,20,15,6,19,50,40,30];
 keys.forEach(key => tree.insert(key));
-
 // console.log("Inorder Traversal:");
 // //tree.inorderTraversal(tree.root);
 // tree.inorderIterative();
@@ -361,3 +361,4 @@ keys.forEach(key => tree.insert(key));
 
 
 //tree.findKthElement(2)
+tree.findPathToleaf()
