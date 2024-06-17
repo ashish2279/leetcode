@@ -8,17 +8,22 @@ class Node{
 class LinkedList {
     constructor() {
         this.head = null;
-        this.tail = null
+        this.tail = null;
+        this.count = 0;
     }
 
     peek() 
     {
-        if(this.head)
-        console.log("peek element " + this.head.val)
+        if(this.head){
+
+            console.log("peek element " + this.head.val)
+            return this.head.val
+        }
         else
          console.log("Empty list ")
     }
     insert(val) {
+        this.count++;
         if(!this.head) {
             this.head = new Node(val)
             console.log(val + " inserted")
@@ -67,6 +72,7 @@ class LinkedList {
             }
         else {
             console.log(curr.val + " deleted")
+            this.count--;
             if(curr == this.head)
                 {
                     this.head = curr.next
@@ -102,6 +108,7 @@ class LinkedList {
             }
         else {
             console.log(curr.val + " deleted")
+            this.count--;
             if(curr == this.head)
                 {
                     this.head = curr.next
@@ -114,6 +121,19 @@ class LinkedList {
             return;
         }
                   
+    }
+
+    deletefirst() {
+        if(!this.head) {
+            console.log("Empty List")
+            return ;
+        }
+
+        let curr = this.head;
+        let next  = curr.next;
+        curr.next = null;
+        this.head = next;
+        this.count--;          
     }
 
     detectCycle() {
@@ -134,11 +154,16 @@ class LinkedList {
         return {val : 'Not present'};
 
     }
+
+    size() {
+        return this.count;
+    }
 }
 
 
 module.exports = LinkedList
 
+if (require.module === 'main') {
 let L = new LinkedList()
 L.insert(2)
 L.insert(4)
@@ -147,15 +172,16 @@ L.insert(5)
 L.print()
 L.insert(1)
 L.print()
-let n = L.insert(3)
-L.print()
-n.next = L.head;
-console.log("cycle present at",L.detectCycle().val)
-n.next = null
-console.log("cycle present at",L.detectCycle().val)
-// L.delete(4)
-// L.delete(2)
-// L.peek()
-// L.delete(1)
-// L.peek()
-// L.delete(3)
+// let n = L.insert(3)
+// L.print()
+// n.next = L.head;
+// console.log("cycle present at",L.detectCycle().val)
+// n.next = null
+// console.log("cycle present at",L.detectCycle().val)
+
+L.deletelast();
+L.print();
+L.deletefirst();
+L.print();
+
+}
