@@ -188,6 +188,37 @@ class Tree {
             console.log(res);
         }
 
+        levelOrderIterative(low,high) {
+            if (low > high ) {
+                console("low cant be greater than high")
+            }
+            console.log("reverse level order is ")
+            let q = [];
+            let level =0;
+            q.push(this.root);
+            let res = ""
+            while(q.length) {
+                let size = q.length;
+                level += 1;
+                if(level >=low && level <=high)
+                console.log("printing level : %j",level)
+                while(size) {
+                    let node  = q.shift();
+                    if(level >=low && level <=high)
+                    console.log(node.val)
+                    if(node.left)
+                        q.push(node.left)
+                    if(node.right)
+                        q.push(node.right)
+                    size--;
+                }
+                
+    
+            }
+
+            console.log(res);
+        }
+
         reverselevelOrder() {
             console.log("reverse level order is ")
             let q = [];
@@ -218,16 +249,18 @@ tree.insert(2)
 tree.insert(3);
 tree.insert(4);
 tree.insert(5);
-tree.printInorder()
-tree.levelOrder()
-tree.reverselevelOrder()
-let height = tree.findheight(tree.root)
+// tree.printInorder()
+// tree.levelOrder()
+// tree.reverselevelOrder()
+// let height = tree.findheight(tree.root)
 
-console.log("height is ",height)
+// console.log("height is ",height)
 
-tree.findheightIterative()
-tree.findelementAtKdist(0)
-tree.findelementAtKdist(1)
-tree.findelementAtKdist(2)
-tree.findelementAtKdist(3)
-tree.findAncestors(5)
+// tree.findheightIterative()
+// tree.findelementAtKdist(0)
+// tree.findelementAtKdist(1)
+// tree.findelementAtKdist(2)
+// tree.findelementAtKdist(3)
+// tree.findAncestors(5)
+
+tree.levelOrderIterative(2,3)
