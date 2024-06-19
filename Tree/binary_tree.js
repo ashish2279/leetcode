@@ -343,6 +343,25 @@ class Tree {
     }
             console.log(result);
         }
+
+        minimumDepth() {
+            let q = [];
+            q.push({node:this.root, d: 1});
+            while(q.length) {
+                let temp  = q.shift();
+                let tempNode = temp.node;
+                let tempD = temp.d;
+
+                if(!tempNode.left && !tempNode.right)
+                    return tempD;
+                if(tempNode.left)
+                    q.push({node:tempNode.left, d: tempD+1})
+                if(tempNode.right)
+                    q.push({node:tempNode.right, d: tempD+1})
+    
+            }
+
+        }
 }
 
 
@@ -374,3 +393,4 @@ tree.leftView()
 tree.rightView()
 tree.diagonalView()
 tree.verticalView()
+console.log(tree.minimumDepth())
