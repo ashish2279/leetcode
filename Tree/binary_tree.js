@@ -171,7 +171,7 @@ class Tree {
         }
 
         levelOrder() {
-            console.log("reverse level order is ")
+            console.log("level order is ")
             let q = [];
             q.push(this.root);
             let res = ""
@@ -188,7 +188,7 @@ class Tree {
             console.log(res);
         }
 
-        levelOrderIterative(low,high) {
+        findNodesBetweenLevel(low,high) {
             if (low > high ) {
                 console("low cant be greater than high")
             }
@@ -238,7 +238,55 @@ class Tree {
             console.log(res);
         }
 
+        leftView() {
 
+            console.log("left View")
+            let q = [];
+            let level =0;
+            q.push(this.root);
+            let res = ""
+            while(q.length) {
+                let size = q.length;
+                level += 1;
+
+                for (let i=1;i<=size;i++) {
+                    let node  = q.shift();
+                    if(i===1)
+                        console.log(node.val)
+                    if(node.left)
+                        q.push(node.left)
+                    if(node.right)
+                        q.push(node.right)
+                }
+            }
+
+            console.log(res);
+        }
+
+        rightView() {
+
+            console.log("right View")
+            let q = [];
+            let level =0;
+            q.push(this.root);
+            let res = ""
+            while(q.length) {
+                let size = q.length;
+                level += 1;
+
+                for (let i=1;i<=size;i++) {
+                    let node  = q.shift();
+                    if(i===size)
+                        console.log(node.val)
+                    if(node.left)
+                        q.push(node.left)
+                    if(node.right)
+                        q.push(node.right)
+                }
+            }
+
+            console.log(res);
+        }
 }
 
 
@@ -249,6 +297,7 @@ tree.insert(2)
 tree.insert(3);
 tree.insert(4);
 tree.insert(5);
+tree.insert(6);
 // tree.printInorder()
 // tree.levelOrder()
 // tree.reverselevelOrder()
@@ -263,4 +312,6 @@ tree.insert(5);
 // tree.findelementAtKdist(3)
 // tree.findAncestors(5)
 
-tree.levelOrderIterative(2,3)
+tree.findNodesBetweenLevel(1,4);
+tree.leftView()
+tree.rightView()
