@@ -287,7 +287,36 @@ class Tree {
 
             console.log(res);
         }
+
+        diagonalView() {
+            let diagonalViewMap = new Map();
+
+            console.log("diagonalView")
+            let q = [];
+            q.push({node:this.root, d: 0});
+            while(q.length) {
+                let temp  = q.shift();
+                let tempNode = temp.node;
+                let tempD = temp.d;
+                if(!diagonalViewMap.has(tempD)) {
+                    diagonalViewMap.set(tempD,[])
+                }
+                diagonalViewMap.get(tempD).push(tempNode.val)
+                if(tempNode.left)
+                    q.push({node:tempNode.left, d: tempD+1})
+                if(tempNode.right)
+                    q.push({node:tempNode.right, d: tempD})
+    
+            }
+
+            let result = [];
+    for (let key of Array.from(diagonalViewMap.keys()).sort((a, b) => a - b)) {
+        result.push(diagonalViewMap.get(key));
+    }
+            console.log(result);
+        }
 }
+
 
 
 
@@ -315,3 +344,4 @@ tree.insert(6);
 tree.findNodesBetweenLevel(1,4);
 tree.leftView()
 tree.rightView()
+tree.diagonalView()
