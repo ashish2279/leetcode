@@ -315,6 +315,34 @@ class Tree {
     }
             console.log(result);
         }
+
+        verticalView() {
+            let verticalViewMap = new Map();
+
+            console.log("verticalView")
+            let q = [];
+            q.push({node:this.root, d: 0});
+            while(q.length) {
+                let temp  = q.shift();
+                let tempNode = temp.node;
+                let tempD = temp.d;
+                if(!verticalViewMap.has(tempD)) {
+                    verticalViewMap.set(tempD,[])
+                }
+                verticalViewMap.get(tempD).push(tempNode.val)
+                if(tempNode.left)
+                    q.push({node:tempNode.left, d: tempD-1})
+                if(tempNode.right)
+                    q.push({node:tempNode.right, d: tempD+1})
+    
+            }
+
+            let result = [];
+    for (let key of Array.from(verticalViewMap.keys()).sort((a, b) => a - b)) {
+        result.push(verticalViewMap.get(key));
+    }
+            console.log(result);
+        }
 }
 
 
@@ -345,3 +373,4 @@ tree.findNodesBetweenLevel(1,4);
 tree.leftView()
 tree.rightView()
 tree.diagonalView()
+tree.verticalView()
