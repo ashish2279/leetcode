@@ -32,6 +32,31 @@ var previousSmaller = function(nums) {
 };
 
 
+var nextSmaller = function(nums) {
+    let n = nums.length
+    if(nums.length == 0)
+    return []
+    let st =[]
+    st.push(0)
+    let res = []
+    for (let i=1; i<n ;i++) {
+        while(st.length && nums[top(st)] > nums[i])
+        {
+            res[st.pop()]= nums[i]
+        }
+ 
+            st.push(i)
+    }
 
-let  nums2 = [1, 3, 0, 2, 5]
-console.log(previousSmaller(nums2))
+    while(st.length) {
+        let val = st.pop()
+        res[val] =  -1 
+    }
+
+    return res
+};
+
+
+let  nums2 = [0,2,1,5,6,2,3,0]
+console.log("prev samller : %j",previousSmaller(nums2))
+console.log("next smaller : %j",nextSmaller(nums2))
