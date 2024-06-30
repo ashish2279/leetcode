@@ -219,6 +219,36 @@ class Tree {
             console.log(res);
         }
 
+        findNextNodeAtSamelevel(val) {
+            let q = [];
+            let level =0;
+            q.push(this.root);
+            let res = ""
+            while(q.length) {
+                let size = q.length;
+                level += 1;
+                let found = false;
+                while(size) {
+                    let node  = q.shift();
+                    if(found) {
+                        console.log("value at next node of : %j is :%j",val,node.val);
+                        found = false;
+                    }
+                    if(node.val === val) {
+                        found = true;
+                    }
+                    if(node.left)
+                        q.push(node.left)
+                    if(node.right)
+                        q.push(node.right)
+                    size--;
+                }
+                
+    
+            }
+
+            console.log(res);
+        }
         reverselevelOrder() {
             console.log("reverse level order is ")
             let q = [];
@@ -394,3 +424,6 @@ tree.rightView()
 tree.diagonalView()
 tree.verticalView()
 console.log(tree.minimumDepth())
+
+
+tree.findNextNodeAtSamelevel(2)
