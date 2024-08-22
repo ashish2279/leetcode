@@ -43,16 +43,52 @@ class LinkedList {
          return n;
             
     }
+    insertHead(val) {
+        this.count++;
+        if(!this.head) {
+            this.head = new Node(val)
+            console.log(val + " inserted")
+            return ;
+        }
+
+        let head = this.head;
+        let n = new Node(val)
+         n.next = head;
+         console.log(val + " inserted at head")
+         this.head = n;
+         return n;
+            
+    }
     print () {
+        if(!this.head) {
+            console.log("Empty List");
+            return ;
+        }
         let curr = this.head;
         let res= "";
         while(curr) {
-            res +=  curr.val + "-> "
+            if (Number(curr.val) < 0)
+                 res += "(" + curr.val + ") --> "
+            else
+                res +=  curr.val + " --> "
             curr = curr.next
         }
+        res = res.slice(0, res.length-5);
         console.log(res)
     }
 
+    deleteLinkedList() {
+        console.log("deleting the complete list");
+        if(!this.head) {
+            console.log("Empty List");
+            return;
+        }
+        let head = this.head;
+        while(head) {
+            this.deletelast();
+            head = this.head;
+        }
+    }
     delete(val) {
         if(!this.head) {
             console.log("Empty List")
@@ -184,9 +220,16 @@ n.next = p;
 console.log("cycle present at",L.detectCycle().val)
 n.next = null
 console.log("cycle present at",L.detectCycle().val)
-
+L.print()
+console.log("Deleting last")
 L.deletelast();
 L.print();
+console.log("Deleting First")
 L.deletefirst();
+L.print();
+L.insertHead(-1);
+L.insertHead(-2);
+L.print();
+L.deleteLinkedList();
 L.print();
 }
