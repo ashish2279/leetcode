@@ -81,7 +81,7 @@ class LinkedList {
             {
 
                 prev.next = curr.next
-0            }
+          }
             return;
         }
          
@@ -147,8 +147,14 @@ class LinkedList {
         while (slow && fast && fast.next) {
             slow = slow.next;
             fast = fast.next.next;
-            if(fast == slow)
-                return slow;
+            if(fast == slow){
+                let start = head;
+                while(start!==slow) {
+                    start = start.next;
+                    slow = slow.next;
+                }
+                return start;
+            }
         }
 
         return {val : 'Not present'};
@@ -163,25 +169,24 @@ class LinkedList {
 
 module.exports = LinkedList
 
-if (require.module === 'main') {
+if (require.main === module) {
 let L = new LinkedList()
 L.insert(2)
 L.insert(4)
 L.print()
-L.insert(5)
+let p = L.insert(5)
 L.print()
 L.insert(1)
 L.print()
-// let n = L.insert(3)
-// L.print()
-// n.next = L.head;
-// console.log("cycle present at",L.detectCycle().val)
-// n.next = null
-// console.log("cycle present at",L.detectCycle().val)
+let n = L.insert(3)
+L.print()
+n.next = p;
+console.log("cycle present at",L.detectCycle().val)
+n.next = null
+console.log("cycle present at",L.detectCycle().val)
 
 L.deletelast();
 L.print();
 L.deletefirst();
 L.print();
-
 }
