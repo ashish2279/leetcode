@@ -140,7 +140,6 @@ class Graph {
             }
             
         }
-        console.log()
     }
 
     bfs () {
