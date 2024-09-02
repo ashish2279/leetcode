@@ -120,7 +120,35 @@ class newlinkedList extends LinkedList{
         console.log("\nPrinting list after moving even nodes at last");
         this.printL(head);
     }
+
+    reverseIterative(head = this.head){
+        if(!head)
+            return;
+
+        let L = new newlinkedList();
+        let temp = head;
+        while(temp) {
+            let next = temp.next;
+            temp.next = null;
+            L.insertNodeAtFront(temp);
+            temp = next;
+        }
+        this.head = L.head;
+        console.log("reversing the linked list Iteratively"); 
+        this.print();
+    }
     
+    reverseRec(node) {
+        if(!node || !node.next){
+            this.head = node;
+            return node;
+
+        }
+        let newHead = this.reverseRec(node.next);
+        node.next.next = node;
+        node.next = null;
+        return newHead;
+    }
 }
 
 
@@ -150,5 +178,9 @@ if (require.main === module) {
     L.altrnateTwo();
     L.removeduplicatesSorted();
     L.moveEvenNodesAtLastInReverse(L.head);
+    L.reverseIterative(L.head);
+    L.reverseRec(L.head);
+    console.log("Reversing the list recursively")
+    L.print()
 
 }
