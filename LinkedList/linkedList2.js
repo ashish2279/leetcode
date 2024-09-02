@@ -81,6 +81,46 @@ class newlinkedList extends LinkedList{
         this.printL(head)
         return;
     }
+
+    insertNodeAtFront(node) {
+        if(!this.head) {
+            this.head = node;
+            return ;
+        }
+
+        node.next = this.head;
+        this.head = node;
+        return;
+    }    
+
+    moveEvenNodesAtLastInReverse(head = this.head) {
+        let count = 1;  // Start counting from 1 (assuming 1-based index)
+        let temp = head;
+        if (!head) return;  
+        
+        let firstLinkedList = new newlinkedList();  
+        let prev = null;  
+        
+        while (temp) {
+            if (count % 2 === 0) {  
+                console.log("Inserting ", temp.val);
+                firstLinkedList.insertHead(temp.val); 
+                prev.next = temp.next;  
+            } else {
+                prev = temp;  
+            }
+            temp = temp.next;
+            count++;
+        }
+        
+        if (firstLinkedList.head) {
+            prev.next = firstLinkedList.head;  // Append the new list to the end of the original list
+        }
+        
+        console.log("\nPrinting list after moving even nodes at last");
+        this.printL(head);
+    }
+    
 }
 
 
@@ -109,5 +149,6 @@ if (require.main === module) {
 
     L.altrnateTwo();
     L.removeduplicatesSorted();
+    L.moveEvenNodesAtLastInReverse(L.head);
 
 }
