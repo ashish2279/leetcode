@@ -5,94 +5,39 @@
  */
 
 
-var maximumSubarraySum = function(nums, k) {
+var firstNegtiveNumber = function(nums, k) {
     const n = nums.length;
 
-    let  ans = Number.MIN_SAFE_INTEGER;
-    if(n<k) {
-        return 0;
-    }
-
-    let left = 0;
     let i =0;
-    let first_neg = -1;
-
-    while(i<n) {
+    let q= [];
+    let ans = []
+    while(i<k) {
         if(nums[i] < 0) {
-            first_neg = i;
-            break;
+            q.push(nums[i]);
         }
         i++;
     }
 
-
-
-    let right = k;
-    while(right < n) {
-
-        
-        if(first_neg >= left && first_neg<=right) {
-            ans.push(first_neg);
+    for(let right = 0; right + k -1 <n;right++) {
+        if(q.length) {
+            ans.push(q[0])
         } else {
             ans.push(0);
         }
-        right++;
-        left++;
 
-        
+        if(nums[right] < 0) {
+            q.shift();
+        }
+        if(nums[right + k] < 0) {
+            q.push(nums[right + k]);
+        }
     }
-
-    return ans;
-
+    
+    return ans; 
 };
 
 
-// Test Case 1: Basic test case with simple increasing values
-let nums = [1, 2, 3, 4, 5];
-let k = 3;
-console.log(maximumSubarraySum(nums, k));  // Expected output: 12
 
-// Test Case 2: All numbers are the same
-nums = [5, 5, 5, 5, 5, 5, 5];
-k = 4;
-console.log(maximumSubarraySum(nums, k));  // Expected output: 20
-
-// Test Case 3: Test with negative numbers
-nums = [-1, -2, -3, -4, -5];
-k = 2;
-console.log(maximumSubarraySum(nums, k));  // Expected output: -3
-
-// Test Case 4: k is equal to the size of the array
-nums = [3, -1, 2, -5, 7];
-k = 5;
-console.log(maximumSubarraySum(nums, k));  // Expected output: 6
-
-// Test Case 5: Alternating large positive and negative numbers
-nums = [1000, -1000, 1000, -1000, 1000, -1000, 1000];
-k = 3;
-console.log(maximumSubarraySum(nums, k));  // Expected output: 1000
-
-// Test Case 6: k larger than array size
-nums = [1, 2];
-k = 3;
-console.log(maximumSubarraySum(nums, k));  // Expected output: 0
-
-// Test Case 7: Best subarray at the end
-nums = [-10, -20, -30, 10, 20, 30];
-k = 3;
-console.log(maximumSubarraySum(nums, k));  // Expected output: 60
-
-// Test Case 8: Zeros in the array
-nums = [0, 0, 0, 0, 0, 0];
-k = 3;
-console.log(maximumSubarraySum(nums, k));  // Expected output: 0
-
-// Test Case 9: Large numbers in the array
-nums = [999999999, -999999999, 999999999, -999999999, 999999999];
-k = 3;
-console.log(maximumSubarraySum(nums, k));  // Expected output: 999999999
-
-// Test Case 10: Large array of length 100000 filled with 1's
-nums = Array(100000).fill(1);
-k = 1000;
-console.log(maximumSubarraySum(nums, k));  // Expected output: 1000
+nums = [12, 8, 123,9, 9, 12, 7,8,0,-13,1,-2];
+k = 11;
+console.log(firstNegtiveNumber(nums, k));  // Expected output: 999999999
